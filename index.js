@@ -68,6 +68,20 @@ app.post('/action', function (req, res) {
   }
 });
 
+// Turn on all lights
+app.get('/on', function () {
+  rooms['my room'].light.on();
+  rooms['kitchen'].light.on();
+  rooms['bathroom'].light.on();
+})
+
+// Turn off all lights
+app.get('/off', function () {
+  Object.keys(rooms).forEach(function (roomName) {
+    rooms[roomName].light.off();
+  });
+})
+
 board.on("ready", function () {
   // Start the pins
   Object.keys(rooms).forEach(function (roomName) {
